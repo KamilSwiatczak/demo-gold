@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 @RestController
@@ -19,8 +20,14 @@ public class GoldRestController {
         this.goldService = goldService;
     }
 
-    @GetMapping
-    public BigDecimal getGoldPrice(String url){
+    @GetMapping(path = "/rte")
+    public BigDecimal getGoldPrice(String url) {
         return goldService.getGold(url);
     }
+
+    @GetMapping(path = "/goldprice")
+    public BigDecimal getGoldPrice2(String url) throws IOException, InterruptedException {
+        return goldService.getGold2(url);
+    }
+
 }
